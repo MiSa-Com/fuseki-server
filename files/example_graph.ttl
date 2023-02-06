@@ -1,0 +1,41 @@
+@prefix res: <https://tourism-vietnam.com/resource#> .
+@prefix prop: <https://tourism-vietnam.com/property#> .
+@prefix guest: <https://tourism-vietnam.com/guest#> .
+@prefix hotelOwner: <https://tourism-vietnam.com/hotelOwner#> .
+@prefix hotel: <https://tourism-vietnam.com/hotel#> .
+@prefix city: <https://tourism-vietnam.com/city#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+guest:Alan_Turing a res:guest;
+                  prop:name "Alan Turing"@en;
+                  prop:age "110"^^xsd:Integer;
+                  prop:liveIn hotel:Marriot.
+
+guest:Victor_Hugo a res:guest;
+                  prop:name "Victor Hugo"@en;
+                  prop:age "220"^^xsd:Integer;
+                  prop:liveIn hotel:Muong_Thanh.
+
+hotel:Marriot a res:hotel;
+              prop:name "Marriot Hotel"@en;
+              prop:location city:Hanoi.
+
+hotel:Metropole a res:hotel;
+              prop:name "Metropole Hotel"@en;
+              prop:location city:Hanoi.
+
+hotel:Muong_Thanh a res:hotel;
+              prop:name "Muong Thanh Hotel"@en;
+              prop:location city:Da_Nang.
+
+hotelOwner:Minh_Ngo a res:hotelOwner;
+                    prop:name "Minh Ngo"@en;
+                    prop:age "23"^^xsd:Integer;
+                    prop:own (
+                        hotel:Muong_Thanh
+                        hotel:Metropole
+                    ) .
+

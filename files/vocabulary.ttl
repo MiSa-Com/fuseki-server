@@ -1,0 +1,85 @@
+@prefix ontology: <https://tourism-vietnam.com/ontology#> .
+@prefix res: <https://tourism-vietnam.com/resource#> .
+@prefix prop: <https://tourism-vietnam.com/property#> .
+@prefix datatype: <https://tourism-vietnam.com/datatype#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://tourism-vietnam.com/ontology#> a owl:Ontology;
+                                        dc:title "The RDF Concepts Vocabulary of Tourist App";
+                                        dc:date "2023-02-03"^^xsd:date.
+
+datatype:human a rdfs:Datatype;
+                rdfs:isDefinedBy <>;
+                rdfs:label "Human";
+                rdfs:comment "The datatype of human".
+
+datatype:destination a rdfs:Datatype;
+                rdfs:isDefinedBy <>;
+                rdfs:label "Destination";
+                rdfs:comment "The datatype of destination".
+
+res:hotelOwner a datatype:human;
+               rdfs:isDefinedBy <>;
+               rdfs:label "Hotel Owner".
+
+res:guest a datatype:human;
+          rdfs:isDefinedBy <>;
+          rdfs:label "Guest".
+
+res:tourDest a datatype:destination;
+             rdfs:isDefinedBy <>;
+             rdfs:label "Tourist destination".
+
+res:hotel a rdfs:Class;
+          rdfs:isDefinedBy <>;
+          rdfs:label "Hotel".
+
+res:city a rdfs:Class;
+         rdfs:isDefinedBy <>;
+         rdfs:label "City".
+
+prop:name a rdf:Property;
+          rdfs:isDefinedBy <>;
+          rdfs:label "Name";
+          rdfs:domain res:hotelOwner;
+          rdfs:domain res:guest;
+          rdfs:domain res:tourDest;
+          rdfs:domain res:hotel;
+          rdfs:domain res:city;
+          rdfs:range rdf:Literal.
+
+prop:age a rdf:Property;
+         rdfs:isDefinedBy <>;
+         rdfs:label "Age";
+         rdfs:domain res:hotelOwner;
+         rdfs:domain res:guest;
+         rdfs:range xsd:Integer.
+
+prop:liveIn a rdf:Property;
+            rdfs:isDefinedBy <>;
+            rdfs:label "Lives in";
+            rdfs:domain res:guest;
+            rdfs:range res:hotel.
+
+prop:location a rdf:Property;
+              rdfs:isDefinedBy <>;
+              rdfs:label "Location";
+              rdfs:domain res:hotel;
+              rdfs:domain res:tourDest;
+              rdfs:range res:city.
+
+prop:own a rdf:Property;
+         rdfs:isDefinedBy <>;
+         rdfs:label "owns";
+         rdfs:domain res:hotelOwner;
+         rdfs:range [
+            a rdf:Bag;
+            rdf:_1 res:hotel;
+            rdf:_2 res:hotel;
+            rdf:_3 res:hotel
+         ] .
